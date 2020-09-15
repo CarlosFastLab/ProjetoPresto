@@ -1,4 +1,4 @@
-import { Usuario } from './usuario/Usuario';
+import { Usuario } from './../usuario/Usuario';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
