@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -11,7 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { SwitchComponent } from './switch/switch.component';
+
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,12 +23,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     PedidosComponent,
     CadastroComponent,
-    SwitchComponent
+    SwitchComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
