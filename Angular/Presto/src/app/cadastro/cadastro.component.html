@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row justify-content-center align-self-center">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100 mt-5 border">
+      <form [formGroup]="usuarioForm" (ngSubmit)="inserirUsuario()">
+        
+        <div class="form-group">
+          <label for="email" class="ml-1 mt-3 font-weight-bold">Digite seu email:</label>
+          <input type="text" class="form-control form-control-lg text-center" name="email" id="email" formControlName="email" placeholder="Email" required>
+        </div>
+        <!-- <div class="form-group">
+          <label for="email" class="ml-1 mt-3 font-weight-bold">Confirme seu email:</label>
+          <input type="text" class="form-control form-control-lg text-center" name="email" id="email" formControlName="email" placeholder="Email" required>
+        </div> -->
+        <div class="form-group">
+          <label for="senha" class="ml-1 mt-3 font-weight-bold">Digite sua senha:</label>
+          <input class="form-control form-control-lg text-center" name="senha" id="senha" formControlName="senha" placeholder="Senha" type="password" required>
+        </div>
+        <div class="form-group">
+          <label for="nome" class="ml-1 mt-3 font-weight-bold">Digite seu nome:</label>
+          <input class="form-control form-control-lg text-center" name="nome" id="nome" formControlName="nome" placeholder="Nome" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="data" class="ml-1 mt-3 font-weight-bold">Digite sua data de nascimento:</label>
+          <input class="form-control form-control-lg text-center" name="data" id="data" formControlName="data" placeholder="Data" required>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill"  > Cadastrar </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
