@@ -23,7 +23,7 @@ export class CadastroComponent implements OnInit {
       email: ['', Validators.required],
       senha: ['', Validators.required],
       nome: ['', Validators.required],
-      data: ['', Validators.required]
+      dataNascimento: ['', Validators.required]
     });
   }
 
@@ -43,6 +43,6 @@ export class CadastroComponent implements OnInit {
     this.us = this.data;
   }
 
-  
+
 
 }

@@ -27,8 +27,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    console.log("Login chamado")
+    console.log(this.signInForm.value.email)
     this.authService.login(this.signInForm.value.email, this.signInForm.value.senha).subscribe();
   }
 
-
+  loggedUser() {
+    this.authService.loggedUser()
+  }
 }
