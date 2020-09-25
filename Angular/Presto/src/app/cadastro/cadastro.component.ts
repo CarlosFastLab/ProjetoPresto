@@ -20,7 +20,7 @@ export class CadastroComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioForm = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.email, Validators.required]],
       senha: ['', Validators.required],
       nome: ['', Validators.required],
       dataNascimento: ['', Validators.required]
@@ -36,6 +36,8 @@ export class CadastroComponent implements OnInit {
     this.us.addUsuario(this.usuarioForm.value).subscribe(
       (usuarioInserido) => console.log(usuarioInserido)
     );
+
+    this.usuarioForm.reset(new Usuario);
   }
 
   obter() {

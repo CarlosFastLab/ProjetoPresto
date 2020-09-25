@@ -24,8 +24,10 @@
           <label for="dataNascimento" class="ml-1 mt-3 font-weight-bold">Digite sua data de nascimento:</label>
           <input class="form-control form-control-lg text-center" name="dataNascimento" id="dataNascimento" formControlName="dataNascimento" placeholder="Data" required>
         </div>
+        <p>Form Status: {{usuarioForm.status}}</p>
+
         <div class="form-group">
-          <button class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill"  > Cadastrar </button>
+          <button type="submit" [disabled]="!usuarioForm.valid" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill"  > Cadastrar </button>
         </div>
       </form>
     </div>
