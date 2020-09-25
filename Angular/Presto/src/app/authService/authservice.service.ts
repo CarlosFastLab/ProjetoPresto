@@ -24,6 +24,8 @@ export class AuthService {
             this.router.navigate(['/pedidos'])
             this.mostrarMenuEmitter.emit(true)
           } else {
+            alert("Usuario ou senha invalidos!")
+            this.usuarioAutenticado = false
             this.mostrarMenuEmitter.emit(false)
           }
           return usuario;
@@ -33,11 +35,19 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('usuarioLogado');
+    this.usuarioAutenticado = false
+    this.mostrarMenuEmitter.emit(false)
   }
 
   loggedUser(): Usuario {
     return JSON.parse(localStorage.getItem('usuarioLogado'));
   }
 
+  usuarioEstaLogado(): boolean{
+    if(this.usuarioAutenticado){
+      return true
+    }
+    return false
+  }
 
 }

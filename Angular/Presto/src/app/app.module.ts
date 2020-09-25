@@ -1,3 +1,5 @@
+import { GuardRouter } from './guard/guardRouter';
+import { AuthService } from './authService/authservice.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -13,6 +15,8 @@ import { SwitchComponent } from './switch/switch.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CardapioComponent } from './cardapio/cardapio.component';
+import { ProdutoComponent } from './produto/produto.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     PedidosComponent,
     CadastroComponent,
     SwitchComponent,
+    CardapioComponent,
+    ProdutoComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService, GuardRouter],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
