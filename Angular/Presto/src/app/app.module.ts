@@ -13,6 +13,7 @@ import { SwitchComponent } from './switch/switch.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { GuardRouters } from './guard/guardRouters';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    GuardRouters
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

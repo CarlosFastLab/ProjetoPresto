@@ -10,7 +10,7 @@ import { map }from 'rxjs/operators';
 })
 export class AuthService {
   mostrarMenuEmitter = new EventEmitter<Boolean>()
-  usuarioAutenticado: Boolean = false
+  usuarioAutenticado: boolean = false
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -39,5 +39,7 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('usuarioLogado'));
   }
 
-
+  isLogged(){
+    return this.usuarioAutenticado;
+  }
 }
