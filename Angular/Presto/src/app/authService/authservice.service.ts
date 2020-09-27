@@ -38,8 +38,4 @@ export class AuthService {
   loggedUser(): Usuario {
     return JSON.parse(localStorage.getItem('usuarioLogado'));
   }
-
-  isLogged(){
-    return this.usuarioAutenticado;
-  }
 }

@@ -14,6 +14,9 @@ import { SwitchComponent } from './switch/switch.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GuardRouters } from './guard/guardRouters';
+import { ProdutoComponent } from './produto/produto.component';
+import { CardapioComponent } from './cardapio/cardapio.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,8 @@ import { GuardRouters } from './guard/guardRouters';
     PedidosComponent,
     CadastroComponent,
     SwitchComponent,
+    ProdutoComponent,
+    CardapioComponent,
   ],
   imports: [
     BrowserModule,
