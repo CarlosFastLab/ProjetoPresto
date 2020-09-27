@@ -17,12 +17,12 @@ export class UsuarioService {
   }
 
   getUsuario(): Observable <Usuario[]>{
-    return this.http.get<Usuario[]>(this.url + "/presto/usuarios")
+    return this.http.get<Usuario[]>(this.url + "/usuario/usuarios")
   }
 
   getUsuarioByEmail(email: String): Observable <Usuario[]>{
-    const url = `${this.url}/${email}`;
-    return this.http.get<Usuario[]>(this.url + "/presto/usuarios")
+    // const url = `${this.url}`;
+    return this.http.get<Usuario[]>(this.url + "/usuario/getByEmail/"+email)
   }
 
   update(usuario: Usuario): Observable <any> {
@@ -32,7 +32,7 @@ export class UsuarioService {
   }
 
   addUsuario(usuario: Usuario):  Observable <any>{
-    return this.http.post<Usuario>(this.url + "/presto/usuarios", usuario).pipe(
+    return this.http.post<Usuario>(this.url + "/usuario/create", usuario).pipe(
       tap((newUsuario: Usuario) => console.log(`usuario adicionado email= ${newUsuario.email}`))
     )
   }
