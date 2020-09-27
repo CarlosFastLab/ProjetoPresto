@@ -1,9 +1,21 @@
 <nav class="navbar navbar-expand-sm bg-faded" style="background-color: #DD2D2D; ">
-  <div class="mx-auto d-block text-center">
+  <!--<div class="mx-auto d-block text-center">-->
     <a class="navbar-brand" href="">
       <img src="../../assets/imagens/prestoBranco.png" alt="LogoPresto" style="width:100px;">
     </a>
-    <ul class="navbar-nav">
+  <!--</div>-->
+    <ul class="navbar-nav ml-auto flex-nowrap">
+      <li class="nav-item" *ngIf="loggedUser()">
+        <a class="nav-link" routerLink="pedidos" style="color: white;">Pedidos</a>
+      </li>
+      <li class="nav-item" *ngIf="loggedUser()">
+        <a class="nav-link" routerLink="cardapio" style="color: white;">Cardápio</a>
+      </li>
+      <li class="nav-item" *ngIf="loggedUser()">
+        <a class="nav-link" routerLink="produto" style="color: white;">Produtos</a>
+      </li>
+
+
       <li class="nav-item" *ngIf="loggedUser()">
         <a class="nav-link" routerLink=""> {{ loggedUser().nome }} </a>
       </li>
@@ -11,7 +23,4 @@
         <a class="nav-link" routerLink="login" (click)="logout()"> Sair </a>
       </li>
     </ul>
-   
-  </div>
-
 </nav>

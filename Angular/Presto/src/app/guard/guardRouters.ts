@@ -1,4 +1,4 @@
-import { Route } from '@angular/compiler/src/core';
+// import { Route } from '@angular/compiler/src/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../authService/authservice.service';
 import { Observable } from 'rxjs';
@@ -9,10 +9,10 @@ export class GuardRouters implements CanActivate {
   constructor(private usuario: AuthService, private route: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
-    if(this.usuario.isLogged() === false) {
+    if (!this.usuario.loggedUser()) {
       this.route.navigate(['/login']);
+      return false
     }
-    return this.usuario.isLogged();
+    return true
   }
-
 }

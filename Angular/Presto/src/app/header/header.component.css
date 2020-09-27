@@ -1,7 +1,12 @@
-.navbar-brand{
-  margin-left: 12%;
-
-}
 .navbar{
   background-color: #DD2D2D;
+  height: 60px;
 }
+
+.navbar-brand{
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
+}
+
+
