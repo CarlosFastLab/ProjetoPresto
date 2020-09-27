@@ -15,7 +15,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, senha: string): Observable<Usuario> {
-    return this.http.get<Usuario>('http://localhost:8080/presto/usuariosEmail/' + email)
+    return this.http.get<Usuario>('http://localhost:8080/usuario/getbyemail/' + email)
       .pipe(
         map(usuario => {
           if(usuario.senha === senha) {
