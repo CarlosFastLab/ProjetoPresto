@@ -1,1 +1,12 @@
-<p>cardapio works!</p>
+<div class="col-sm-12">
+    <h1> Cardápio </h1>                             
+</div>
+
+<div class="row">
+
+    <div [routerLink]="['/show-cardapio', c.id]" *ngFor="let c of cardapio; let i = index" class="col-sm-4">
+        <h3> {{ c.nome }} </h3>
+        
+    </div>     
+
+</div>

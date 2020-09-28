@@ -1,3 +1,4 @@
+import { ShowCardapioComponent } from './show-cardapio/show-cardapio.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path : "cadastro",  component : CadastroComponent},
   { path : "cardapio",  component : CardapioComponent, canActivate: [GuardRouters]},
   { path : "produto",  component : ProdutoComponent, canActivate: [GuardRouters]},
+  { path : "show-cardapio/:id", component : ShowCardapioComponent, canActivate: [GuardRouters]},
   { path : "pedidos" ,  component : PedidosComponent, canActivate: [GuardRouters]}
 ];
 
