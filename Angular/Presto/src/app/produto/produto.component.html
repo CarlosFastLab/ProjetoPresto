@@ -1,1 +1,13 @@
-<p>produto works!</p>
+<div class="row">
+
+    <div [routerLink]="['', p.id]" *ngFor="let p of produto; let i = index" class="col-sm-3">
+    
+        <h3> {{ p.nome }} </h3>
+        <p> {{ p.tipo }} </p>
+        <p> {{ p.descricao }} </p>
+        <p> {{ p.tempo }} </p>
+        <p> {{ p.imagem }} </p>
+        
+    </div>     
+
+</div>

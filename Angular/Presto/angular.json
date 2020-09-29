@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Preto": {
+    "Presto": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Preto:build"
+            "browserTarget": "Presto:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Preto:build:production"
+              "browserTarget": "Presto:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Preto:build"
+            "browserTarget": "Presto:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Preto:serve"
+            "devServerTarget": "Presto:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Preto:serve:production"
+              "devServerTarget": "Presto:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "Preto"
+  "defaultProject": "Presto"
 }

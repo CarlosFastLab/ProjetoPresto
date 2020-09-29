@@ -14,7 +14,8 @@ const routes: Routes = [
   { path : "cadastro",  component : CadastroComponent},
   { path : "cardapio",  component : CardapioComponent, canActivate: [GuardRouters]},
   { path : "produto",  component : ProdutoComponent, canActivate: [GuardRouters]},
-  { path : "pedidos" ,  component : PedidosComponent, canActivate: [GuardRouters]}
+  { path : "pedidos" ,  component : PedidosComponent, canActivate: [GuardRouters]},
+  { path : "cardapio-detail/:id", component: CardapioComponent, canActivate: [GuardRouters]}
 ];
 
 @NgModule({

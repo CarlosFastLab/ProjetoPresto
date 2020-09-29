@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Cardapio } from './cardapio';
+import { CardapioService } from './cardapio.service';
 
 @Component({
   selector: 'app-cardapio',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cardapio.component.css']
 })
 export class CardapioComponent implements OnInit {
+  
+  cardapio: Cardapio[]
 
-  constructor() { }
+  constructor(private c: CardapioService) { }
 
   ngOnInit(): void {
+    this.c.getCardapio().subscribe(
+      cardapio => {
+        this.cardapio = cardapio
+      }
+    )
   }
 
 }
