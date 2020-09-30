@@ -21,7 +21,8 @@ export class CadastroComponent implements OnInit {
   ngOnInit(): void {
     this.usuarioForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
-      senha: ['', Validators.required],
+      confemail: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(8)]],
       nome: ['', Validators.required],
       dataNascimento: ['', Validators.required]
     });
@@ -43,6 +44,13 @@ export class CadastroComponent implements OnInit {
   obter() {
     this.data = this.usuarioForm.value;
     this.us = this.data;
+  }
+
+  confereEmailValidator(email){
+    if (this.usuarioForm.value.email === this.usuarioForm.value.confemail) {
+        return true;
+    }
+    return false;
   }
 
 
