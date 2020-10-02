@@ -1,1 +1,14 @@
-<p>cardapio works!</p>
+<div class="container-fluid">
+  <div class="h1 d-flex justify-content-center mt-3 col-sm-12">
+    <h1>
+      Cardápio do Ezequiel
+    </h1>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let produto of produtos">
+      <app-produto [produto]="produto"></app-produto>
+      <!-- <app-produto [produtos]="produtos"></app-produto> -->
+    </div>
+  </div>
+</div>
