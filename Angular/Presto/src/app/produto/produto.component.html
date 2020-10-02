@@ -1,1 +1,7 @@
-<p>produto works!</p>
+  <div class="card mt-5" style="width: 18rem;">
+    <img class="card-img-top" [src]="produto?.imagem" alt="Card image cap" style="height: 13.1rem;">
+    <div class="card-body">
+      <h5 class="card-title titulo">{{produto?.nome}}</h5>
+    </div>
+    <p>{{produto?.descricao}}</p>
+  </div>
