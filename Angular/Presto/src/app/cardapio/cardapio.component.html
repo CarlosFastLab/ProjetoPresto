@@ -1,12 +1,16 @@
 <div class="container-fluid">
   <div class="h1 d-flex justify-content-center mt-3 col-sm-12">
-    <h1>
-      Cardápio do Ezequiel
-    </h1>
+
+
+    <h1>{{cardapio?.nome}}</h1>
+    <button type="button" class="btn btn-outline-light text-dark"(click) = "exibirfiltroGeral()">Geral</button>
+    <button type="button" class="btn btn-outline-light text-dark"(click) = "exibirfiltroComida()">Comida</button>
+    <button type="button" class="btn btn-outline-light text-dark" (click) = "exibirfiltroBebida()">Bebida</button>
+
   </div>
 
   <div class="row">
-    <div *ngFor="let produto of produtos">
+    <div *ngFor="let produto of cardapio.produtos">
       <app-produto [produto]="produto"></app-produto>
       <!-- <app-produto [produtos]="produtos"></app-produto> -->
     </div>
