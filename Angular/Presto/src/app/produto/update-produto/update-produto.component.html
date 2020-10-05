@@ -1,0 +1,39 @@
+<form [formGroup]="updateProdutoForm" (ngSubmit)="capturaNome(produto.nome)">
+
+  <div class="form-group">
+    <label for="nome"  class="ml-1 mt-3 font-weight-bold">Qual o nome do produto:</label>
+    <input type="text" class="form-control form-control-lg text-center" name="nome" id="nome" formControlName="nome" placeholder="Nome" required>
+
+  </div>
+
+  <div class="form-group">
+    <label for="tipo"  class="ml-1 mt-3 font-weight-bold">Qual o tipo do produto:</label>
+    <input type="text" class="form-control form-control-lg text-center" name="tipo" id="tipo" formControlName="tipo" placeholder="Ex: bebida" required>
+
+  </div>
+
+  <div class="form-group">
+    <label for="descricao" class="ml-1 mt-3 font-weight-bold">Adicione uma descrição para o produto:</label>
+    <input class="form-control form-control-lg text-center" name="descricao" id="descricao" formControlName="descricao" placeholder="Ex: Coca Cola 2l" required>
+
+  </div>
+  <div class="form-group">
+    <label for="tempo" class="ml-1 mt-3 font-weight-bold">Em quanto tempo o produto costuma ficar pronto para entrega?</label>
+    <input class="form-control form-control-lg text-center" name="tempo" id="tempo" formControlName="tempo" placeholder="00:15:00,000" required>
+  </div>
+
+  <div class="form-group">
+    <label for="imagem" class="ml-1 mt-3 font-weight-bold">Qual o endereço da imagem do produto?</label>
+    <input class="form-control form-control-lg text-center" name="imagem" id="imagem" formControlName="imagem" placeholder="../../../assets/imagens/imagem.jpg" required>
+  </div>
+
+  <!-- <div class="form-group">
+    <label for="cardapio" class="ml-1 mt-3 font-weight-bold">Id do cardápio</label>
+    <input class="form-control form-control-lg text-center" name="cardapios" id="cardapios" formControlName="cardapios" placeholder="../../../assets/imagens/imagem.jpg">
+  </div> -->
+
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Registrar</button>
+  </div>
+</form>

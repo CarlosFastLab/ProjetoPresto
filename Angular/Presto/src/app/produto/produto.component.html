@@ -1,32 +1,102 @@
-  <div class="card mt-5" style="width: 18rem;">
-    <img class="card-img-top" [src]="produto?.imagem" alt="Card image cap" style="height: 13.1rem;">
-    <div class="card-body">
-      <h5 class="card-title titulo">{{produto?.nome}}</h5>
-    </div>
-    <p>{{produto?.descricao}}</p>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      Editar
-    </button>
-  </div>
+<div class="row">
+  <div class="col-auto px-5" *ngFor="let produto of produtos">
+    <div class="card mt-5" style="width: 18rem;">
+      <img class="card-img-top" [src]="produto?.imagem" alt="Card image cap" style="height: 13.1rem;">
+      <div class="card-body">
+        <h5 class="card-title titulo">{{produto?.nome}}</h5>
+      </div>
+      <p>{{produto?.descricao}}</p>
+
+      <button type="button" class="btn" data-toggle="modal" [attr.data-target]="'#'+produto.tipo"
+        style="background-color: #dd2d2d; color: white;" (click)="capturaNome(produto.nome)" (click)="showForm()">
+        Editar {{produto?.nome}}
+      </button>
+
+      <!-- Modal Edição Produtos-->
+      <div class="modal fade" [attr.id]="produto.tipo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{produto.nome}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="updateProdutoForm" (ngSubmit)="updateProduto(nome)">
+
+                <div class="form-group">
+                  <label for="nome"  class="ml-1 mt-3 font-weight-bold">Qual o nome do produto:</label>
+                  <input type="text" class="form-control form-control-lg text-center" name="nome" id="nome" formControlName="nome" placeholder="Nome" required>
+
+                </div>
+
+                <div class="form-group">
+                  <label for="tipo"  class="ml-1 mt-3 font-weight-bold">Qual o tipo do produto:</label>
+                  <input type="text" class="form-control form-control-lg text-center" name="tipo" id="tipo" formControlName="tipo" placeholder="Ex: bebida" required>
+
+                </div>
+
+                <div class="form-group">
+                  <label for="descricao" class="ml-1 mt-3 font-weight-bold">Adicione uma descrição para o produto:</label>
+                  <input class="form-control form-control-lg text-center" name="descricao" id="descricao" formControlName="descricao" placeholder="Ex: Coca Cola 2l" required>
+
+                </div>
+                <div class="form-group">
+                  <label for="tempo" class="ml-1 mt-3 font-weight-bold">Em quanto tempo o produto costuma ficar pronto para entrega?</label>
+                  <input class="form-control form-control-lg text-center" name="tempo" id="tempo" formControlName="tempo" placeholder="00:15:00,000" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="imagem" class="ml-1 mt-3 font-weight-bold">Qual o endereço da imagem do produto?</label>
+                  <input class="form-control form-control-lg text-center" name="imagem" id="imagem" formControlName="imagem" placeholder="../../../assets/imagens/imagem.jpg" required>
+                </div>
+
+                <!-- <div class="form-group">
+                  <label for="cardapio" class="ml-1 mt-3 font-weight-bold">Id do cardápio</label>
+                  <input class="form-control form-control-lg text-center" name="cardapios" id="cardapios" formControlName="cardapios" placeholder="../../../assets/imagens/imagem.jpg">
+                </div> -->
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{produto?.nome}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Registrar</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!--Modal Adicionar Produto-->
+  <div class="col">
+    <div type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNovoProduto">Teste</div>
+    <div class="modal fade" id="modalNovoProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Novo produto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <app-cadastroproduto></app-cadastroproduto>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

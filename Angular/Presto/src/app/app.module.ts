@@ -17,6 +17,9 @@ import { GuardRouters } from './guard/guardRouters';
 import { ProdutoComponent } from './produto/produto.component';
 import { CardapioComponent } from './cardapio/cardapio.component';
 import { CommonModule } from '@angular/common';
+import { CadastroprodutoComponent } from './produto/cadastroproduto/cadastroproduto.component';
+import { ProdutoCardapioComponent } from './cardapio/produto-cardapio/produto-cardapio.component';
+import { UpdateProdutoComponent } from './produto/update-produto/update-produto.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { CommonModule } from '@angular/common';
     SwitchComponent,
     ProdutoComponent,
     CardapioComponent,
+    CadastroprodutoComponent,
+    ProdutoCardapioComponent,
+    UpdateProdutoComponent,
   ],
   imports: [
     BrowserModule,
