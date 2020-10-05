@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { GuardRouters } from './guard/guardRouters';
 import { ProdutoComponent } from './produto/produto.component';
 import { CardapioComponent } from './cardapio/cardapio.component';
+import { ProdutoCardapioComponent } from './cardapio/produto-cardapio/produto-cardapio.component';
 
 const routes: Routes = [
   { path:"" , redirectTo:"/login", pathMatch:"full"},
