@@ -26,4 +26,8 @@ export class CardapioService {
   produtoPorTipo(tipo: string, nome : string): Observable<Produto[]> {
     return this.http.get<Produto[]>(`http://localhost:8080/cardapio/getfiltro/${nome}/${tipo}`);
   }
+
+  addProdutoNoCardapio(nome : String, produto : Produto){
+     return this.http.put(`http://localhost:8080/cardapio/addproduto/${nome}`, produto);
+  }
 }

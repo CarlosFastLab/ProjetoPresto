@@ -1,3 +1,4 @@
+import { CardapioService } from './../cardapio/cardapio.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Produto } from './produto';
 import { ProdutoService } from './produto.service';
@@ -22,9 +23,6 @@ export class ProdutoComponent implements OnInit {
         this.produtos = produtosLista
       }
     );
-  }
-
-  showForm(){
     this.updateProdutoForm = this.fb.group({
       nome: ['', [Validators.required]],
       tipo: ['', [Validators.required]],
@@ -34,6 +32,8 @@ export class ProdutoComponent implements OnInit {
     })
   }
 
+
+
   capturaNome(nome: string){
     console.log(nome);
     this.nome = nome;
@@ -41,7 +41,16 @@ export class ProdutoComponent implements OnInit {
 
   updateProduto(nome: string) {
     this.produtoService.updateProduto(this.updateProdutoForm.value, nome).subscribe(
-      (produtoAtualizado) => console.log(produtoAtualizado)
+      produtoAtualizado => {console.log(produtoAtualizado)}
+    )
+  }
+
+
+  addNoCardapio(produto: Produto){
+    this.produtoService.adicionarProdutoNocardapio("Geral", produto).subscribe(
+      produtoadcionado =>{
+        this.produtos = produtoadcionado.produtos;
+      }
     )
   }
 }
