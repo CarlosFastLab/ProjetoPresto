@@ -22,7 +22,7 @@ export class UsuarioService {
 
   getUsuarioByEmail(email: String): Observable <Usuario[]>{
     // const url = `${this.url}`;
-    return this.http.get<Usuario[]>(this.url + "/usuario/getByEmail/"+email)
+    return this.http.get<Usuario[]>(this.url + "/usuario/getemail/"+email)
   }
 
   update(usuario: Usuario): Observable <any> {
