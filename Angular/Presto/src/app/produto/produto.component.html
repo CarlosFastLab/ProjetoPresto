@@ -7,6 +7,7 @@
       </div>
       <p>{{produto?.descricao}}</p>
       <button  type="button"  (click)="addNoCardapio(produto)">Adicionar ao Cardapio</button>
+      <button  type="button"  (click)="deletarProduto(produto.id)">Remover produto</button>
 
       <button type="button" class="btn" data-toggle="modal" [attr.data-target]="'#'+produto.tipo"
         style="background-color: #dd2d2d; color: white;" (click)="capturaNome(produto.nome)" >

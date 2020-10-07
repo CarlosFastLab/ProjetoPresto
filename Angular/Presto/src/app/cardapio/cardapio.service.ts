@@ -30,4 +30,9 @@ export class CardapioService {
   addProdutoNoCardapio(nome : String, produto : Produto){
      return this.http.put(`http://localhost:8080/cardapio/addproduto/${nome}`, produto);
   }
+
+  removeProduto(nome: String, produto: Produto ): Observable<any> {
+    console.log("service", produto.nome);
+    return this.http.put<any>(`http://localhost:8080/cardapio/remove/${nome}`, produto);
+  }
 }

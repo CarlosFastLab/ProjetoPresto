@@ -1,3 +1,4 @@
+import { CardapioService } from './../cardapio.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Produto } from '../../produto/produto';
 
@@ -10,9 +11,19 @@ export class ProdutoCardapioComponent implements OnInit {
 
   @Input() produto: Produto;
 
-  constructor() { }
+  constructor(private cardapioService: CardapioService) { }
 
   ngOnInit(): void {
+  }
+
+  removerProdutoDoCardapio(produto : Produto) {
+    console.log("ts", produto.nome);
+    this.cardapioService.removeProduto("Geral", produto).subscribe(
+      removeProduto => {
+        console.log(removeProduto);
+      }
+    );
+    location.reload();
   }
 
 }

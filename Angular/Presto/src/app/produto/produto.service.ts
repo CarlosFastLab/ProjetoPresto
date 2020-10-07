@@ -28,4 +28,8 @@ export class ProdutoService {
   updateProduto(produto: Produto, nome: string): Observable<any> {
     return this.http.put<Produto>("http://localhost:8080/produto/update/" +nome, produto);
   }
+
+  deleteProduto(id: Number): Observable<any> {
+    return this.http.delete<any>("http://localhost:8080/produto/delete/" + id);
+  }
 }
