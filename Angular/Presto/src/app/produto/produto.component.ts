@@ -53,4 +53,12 @@ export class ProdutoComponent implements OnInit {
       }
     )
   }
+
+  deletarProduto(id: Number) {
+    this.produtoService.deleteProduto(id).subscribe(
+      produtoDeletado => {
+        this.produtos = produtoDeletado;
+      }
+    )
+  }
 }

@@ -5,6 +5,10 @@
   </div>
   <p>{{produto?.descricao}}</p>
 
+  <button type="button" class="btn" (click)="removerProdutoDoCardapio(produto)">
+    Remover
+  </button>
+
   <button type="button" class="btn" data-toggle="modal" [attr.data-target]="'#'+produto.tipo" style="background-color: #dd2d2d; color: white;">
     Editar {{produto?.nome}}
   </button>
