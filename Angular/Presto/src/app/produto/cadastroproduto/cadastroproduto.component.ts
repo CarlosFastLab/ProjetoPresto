@@ -31,7 +31,6 @@ export class CadastroprodutoComponent implements OnInit {
     this.prod.addProduto(this.produtoForm.value).subscribe(
       (produtoInserido) => console.log(produtoInserido)
     )
-    location.reload();
   }
 
 }
