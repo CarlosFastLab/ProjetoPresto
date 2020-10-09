@@ -3,6 +3,20 @@
     <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100 mt-5 border">
       <form [formGroup]="usuarioForm" (ngSubmit)="inserirUsuario()">
 
+        <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <div class="text-center">Endereço de E-mail já cadastrado</div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+          <div class="text-center">Usuário cadastrado com sucesso. Redirecionando para a página de login</div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
         <div class="form-group">
           <label for="email"  class="ml-1 mt-3 font-weight-bold">Digite seu email:</label>
           <input type="text" class="form-control form-control-lg text-center" name="email" id="email" formControlName="email" placeholder="Email" required email>
@@ -51,7 +65,7 @@
         <p>Form Status: {{usuarioForm.status}}</p>
 
         <div class="form-group">
-          <button type="submit" [disabled]="!usuarioForm.valid" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill"  > Cadastrar </button>
+          <button type="submit" [disabled]="!usuarioForm.valid" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Cadastrar</button>
         </div>
       </form>
     </div>
