@@ -2,6 +2,9 @@ import { Usuario } from './../usuario/usuario';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../usuario/usuario.service';
+import { Router } from '@angular/router';
+import { delay, timeout } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -16,7 +19,13 @@ export class CadastroComponent implements OnInit {
 
   usuario: Usuario;
 
-  constructor(private fb: FormBuilder,private us: UsuarioService) { }
+  errorMessage = "";
+
+  successMessage = "";
+
+  loading = false;
+
+  constructor(private fb: FormBuilder,private us: UsuarioService, private route: Router) { }
 
   ngOnInit(): void {
     this.usuarioForm = this.fb.group({
@@ -33,12 +42,21 @@ export class CadastroComponent implements OnInit {
   //   this.us.insert(this.usuarioForm.value);
   // }
 
+
   inserirUsuario() {
     this.us.addUsuario(this.usuarioForm.value).subscribe(
-      (usuarioInserido) => console.log(usuarioInserido)
+      (response) => {
+        console.log('response received')
+        this.successMessage = response;
+        setTimeout(() => { this.route.navigate(['/login']); }, 4000)
+      },
+      (error) => {
+        console.log('error caught in component')
+        this.errorMessage = error;
+        this.loading = false;
+      }
     );
 
-    this.usuarioForm.reset(new Usuario);
   }
 
   obter() {
