@@ -1,7 +1,25 @@
 <div class="row">
-  <div class="col-sm-5 px-5" *ngFor="let produto of produtos">
-    <div class="card mt-5" style="width: 18rem;">
-      <img class="card-img-top" [src]="produto?.imagem" alt="Card image cap" style="height: 13.1rem;">
+  <div class="col-auto" *ngFor="let produto of produtos">
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img [src]="produto?.imagem" class="card-img" [alt]="produto.nome" style="max-height: 100em;">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{produto?.nome}}</h5>
+            <p class="card-text">{{produto?.descricao}}</p>
+            <button  type="button"  (click)="addNoCardapio(produto)">Adicionar ao Cardapio</button>
+            <button  type="button"  (click)="deletarProduto(produto.id)">Remover produto</button>
+
+            <button type="button" class="btn" data-toggle="modal" [attr.data-target]="'#'+produto.tipo"
+            style="background-color: #dd2d2d; color: white;" (click)="capturaNome(produto.nome)" >
+            Editar {{produto?.nome}}
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- <img class="card-img-top" [src]="produto?.imagem" alt="Card image cap" style="height: 13.1rem;">
       <div class="card-body">
         <h5 class="card-title titulo">{{produto?.nome}}</h5>
       </div>
@@ -12,7 +30,7 @@
       <button type="button" class="btn" data-toggle="modal" [attr.data-target]="'#'+produto.tipo"
         style="background-color: #dd2d2d; color: white;" (click)="capturaNome(produto.nome)" >
         Editar {{produto?.nome}}
-      </button>
+      </button> -->
 
       <!-- Modal Edição Produtos-->
       <div class="modal fade" [attr.id]="produto.tipo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -52,7 +70,8 @@
 
                 <div class="form-group">
                   <label for="imagem" class="ml-1 mt-3 font-weight-bold">Qual o endereço da imagem do produto?</label>
-                  <input class="form-control form-control-lg text-center" name="imagem" id="imagem" formControlName="imagem" placeholder="../../../assets/imagens/imagem.jpg" required>
+                  <input type="file" class="form-control form-control-lg text-center" name="imagem" id="imagem" formControlName="imagem" required>
+                  <button type="button" (click)="uploadarImage(produto.imagem)">Enviar imagem</button>
                 </div>
 
                 <!-- <div class="form-group">

@@ -61,4 +61,8 @@ export class ProdutoComponent implements OnInit {
       }
     )
   }
+
+  uploadarImage(file: File) {
+    this.produtoService.uploadImage(file).subscribe();
+  }
 }

@@ -2,40 +2,64 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Produto } from '../produto';
 import { ProdutoService } from '../produto.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-update-produto',
   templateUrl: './update-produto.component.html',
   styleUrls: ['./update-produto.component.css']
 })
-export class UpdateProdutoComponent implements OnInit {
+export class UpdateProdutoComponent {
+  constructor(private httpClient: HttpClient) { }
+    selectedFile: File;
 
-  updateProdutoForm: FormGroup;
-  data: any;
-  produto: Produto;
-  nome: string;
+    retrievedImage: any;
 
-  constructor(private fb: FormBuilder, private prodUp: ProdutoService) { }
+    base64Data: any;
 
-  ngOnInit(): void {
-    this.updateProdutoForm = this.fb.group({
-      nome: ['', [Validators.required]],
-      tipo: ['', [Validators.required]],
-      descricao: ['', [Validators.required]],
-      tempo: ['', [Validators.required]],
-      imagem: ['', [Validators.required]]
-    })
+    retrieveResonse: any;
+
+    message: string;
+
+    imageName: any;
+    //Gets called when the user selects an image
+
+    public onFileChanged(event) {
+
+      //Select File
+      this.selectedFile = event.target.files[0];
+
+    }
+    //Gets called when the user clicks on submit to upload the image
+
+    onUpload() {
+      console.log(this.selectedFile);
+      //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
+      const uploadImageData = new FormData();
+      uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+      //Make a call to the Spring Boot Application to save the image
+      this.httpClient.post('http://localhost:8080/image/create', uploadImageData, { observe: 'response' })
+        .subscribe((response) => {
+          if (response.status === 200) {
+            this.message = 'Image uploaded successfully';
+          } else {
+            this.message = 'Image not uploaded successfully';
+          }
+        }
+        );
+    }
+
+      //Gets called when the user clicks on retieve image button to get the image from back end
+      getImage() {
+      //Make a call to Sprinf Boot to get the Image Bytes.
+      this.httpClient.get('http://localhost:8080/image/gettipo/' + this.imageName)
+        .subscribe(
+          res => {
+            this.retrieveResonse = res;
+            this.base64Data = this.retrieveResonse.picByte;
+            this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          }
+        );
+    }
   }
 
-  capturaNome(nome: string){
-    this.nome = nome
-    console.log(nome)
-  }
-
-  updateProduto(nome: string){
-    this.prodUp.updateProduto(this.updateProdutoForm.value, this.nome).subscribe(
-      (produtoAtualizado) => console.log(produtoAtualizado)
-    )
-  }
-
-}
