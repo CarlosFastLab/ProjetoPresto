@@ -23,7 +23,6 @@ export class ProdutoCardapioComponent implements OnInit {
         console.log(removeProduto);
       }
     );
-    location.reload();
   }
 
 }

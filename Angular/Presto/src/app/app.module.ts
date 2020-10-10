@@ -12,7 +12,7 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { SwitchComponent } from './switch/switch.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GuardRouters } from './guard/guardRouters';
 import { ProdutoComponent } from './produto/produto.component';
@@ -42,7 +42,8 @@ import { UpdateProdutoComponent } from './produto/update-produto/update-produto.
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     GuardRouters

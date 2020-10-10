@@ -32,4 +32,8 @@ export class ProdutoService {
   deleteProduto(id: Number): Observable<any> {
     return this.http.delete<any>("http://localhost:8080/produto/delete/" + id);
   }
+
+  uploadImage(file: File): Observable<any> {
+    return this.http.post<any>("http://localhost:8080/image/create/", file);
+  }
 }

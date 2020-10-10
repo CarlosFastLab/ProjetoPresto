@@ -8,6 +8,7 @@ import { GuardRouters } from './guard/guardRouters';
 import { ProdutoComponent } from './produto/produto.component';
 import { CardapioComponent } from './cardapio/cardapio.component';
 import { ProdutoCardapioComponent } from './cardapio/produto-cardapio/produto-cardapio.component';
+import { UpdateProdutoComponent } from './produto/update-produto/update-produto.component';
 
 const routes: Routes = [
   { path:"" , redirectTo:"/login", pathMatch:"full"},
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path : "cadastro",  component : CadastroComponent},
   { path : "cardapio",  component : CardapioComponent, canActivate: [GuardRouters]},
   { path : "produto",  component : ProdutoComponent, canActivate: [GuardRouters]},
-  { path : "pedidos" ,  component : PedidosComponent, canActivate: [GuardRouters]}
+  { path : "pedidos" ,  component : PedidosComponent, canActivate: [GuardRouters]},
+  { path: "testeimage", component : UpdateProdutoComponent, canActivate: [GuardRouters]}
 ];
 
 @NgModule({
