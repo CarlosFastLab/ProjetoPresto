@@ -16,12 +16,41 @@
       </form>
       <ul class="nav justify-content-center pb-2">
         <li class="nav-item">
-          <a class="nav-link mr-5 pr-5" routerLink="/placeholder">Esqueceu sua senha?</a>
+          <a class="nav-link mr-5 pr-5" routerLink="/placeholder" data-toggle="modal" >Esqueceu sua senha?</a>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Redefinir senha
+          </button>
         </li>
         <li class="nav-item">
           <a class="nav-link ml-3" routerLink="/cadastro">Cadastre-se</a>
         </li>
       </ul>
+    </div>
+  </div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Deseja realmente redefinir a senha?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Será enviado pára o seu email uma senha precione sim para enviar</p>
+          <label for="nome"  class="ml-1 mt-3 font-weight-bold">Digite o seu email cadastrado</label>
+          <input type="text" class="form-control form-control-lg text-center" name="email" id="email" value="email" placeholder="exemplo@email.com" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="enviarSenhaPorEmail()">Sim</button>
+      </div>
     </div>
   </div>
 </div>
