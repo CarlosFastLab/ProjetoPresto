@@ -1,3 +1,4 @@
+import { UsuarioService } from './../usuario/usuario.service';
 import { AuthService } from './../authService/authservice.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   signInForm : FormGroup;
   // return: string = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService){ }
+  constructor(private fb: FormBuilder, private authService: AuthService, private usuarioSevice : UsuarioService){ }
 
   ngOnInit(): void {
     this.signInForm = this.fb.group(
@@ -34,5 +35,9 @@ export class LoginComponent implements OnInit {
 
   loggedUser() {
     this.authService.loggedUser()
+  }
+
+enviarSenhaPorEmail(){
+    this.usuarioSevice.redefinirSenha("abc@abc.com").subscribe();
   }
 }

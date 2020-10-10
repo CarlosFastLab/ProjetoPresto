@@ -37,4 +37,8 @@ export class UsuarioService {
     )
   }
 
+  redefinirSenha(email : String): Observable <any>{
+    return this.http.put<any>("http://localhost:8080/usuario/redefinirsenha/"+ email, true);
+  }
+
 }
