@@ -1,8 +1,9 @@
 import { UsuarioService } from './../usuario/usuario.service';
 import { AuthService } from './../authService/authservice.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { element } from 'protractor';
 
 
 
@@ -12,6 +13,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  emailRedef = "";
+
+  errorMessage = "";
+
+  successMessage = "";
+
+  loading = false;
 
   signInForm : FormGroup;
   // return: string = '';
@@ -37,7 +46,16 @@ export class LoginComponent implements OnInit {
     this.authService.loggedUser()
   }
 
-enviarSenhaPorEmail(){
-    this.usuarioSevice.redefinirSenha("abc@abc.com").subscribe();
+async enviarSenhaPorEmail(){
+    this.usuarioSevice.redefinirSenha(this.emailRedef).subscribe(
+      (response)  => {
+        console.log('response received');
+        this.successMessage = response;
+      },
+      (error) => {
+        console.log('Error caught in component!')
+        this.errorMessage = error;
+      }
+    );
   }
 }

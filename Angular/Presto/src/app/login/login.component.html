@@ -16,10 +16,7 @@
       </form>
       <ul class="nav justify-content-center pb-2">
         <li class="nav-item">
-          <a class="nav-link mr-5 pr-5" routerLink="/placeholder" data-toggle="modal" >Esqueceu sua senha?</a>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Redefinir senha
-          </button>
+          <a routerLink="/login" class="nav-link mr-5 pr-5" data-toggle="modal" data-target="#exampleModal">Esqueceu sua senha?</a>
         </li>
         <li class="nav-item">
           <a class="nav-link ml-3" routerLink="/cadastro">Cadastre-se</a>
@@ -27,10 +24,6 @@
       </ul>
     </div>
   </div>
-
-
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -43,9 +36,24 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Será enviado pára o seu email uma senha precione sim para enviar</p>
-          <label for="nome"  class="ml-1 mt-3 font-weight-bold">Digite o seu email cadastrado</label>
-          <input type="text" class="form-control form-control-lg text-center" name="email" id="email" value="email" placeholder="exemplo@email.com" required>
+
+        <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+          <div class="text-center">E-mail enviado com sucesso! Confira sua caixa de e-mails</div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <div class="text-center">Endereço de e-mail não registrado</div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <p>Um e-mail com uma nova senha será encaminhada para seu endereço de e-mail</p>
+          <label for="nome"  class="ml-1 mt-3 font-weight-bold">Digite o seu email cadastrado.</label>
+          <input type="text" (input)="this.emailRedef=$event.target.value" class="form-control form-control-lg text-center" name="email" id="emailRedef" placeholder="exemplo@email.com" required>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
