@@ -13,7 +13,7 @@ export class UsuarioService {
 
   url = "http://localhost:8080";
   httpOptions = {
-    header: new HttpHeaders({'Content-Type': 'application/json' })
+    header: new HttpHeaders({'Content-Type': 'application/json'}),
   }
 
   getUsuario(): Observable <Usuario[]>{
@@ -38,7 +38,7 @@ export class UsuarioService {
   }
 
   redefinirSenha(email : String): Observable <any>{
-    return this.http.put<any>("http://localhost:8080/usuario/redefinirsenha/"+ email, true);
+    return this.http.put<any>("http://localhost:8080/usuario/redefinirsenha/"+ email, true)
   }
 
 }
