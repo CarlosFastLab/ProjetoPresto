@@ -33,8 +33,8 @@ export class CadastroprodutoComponent implements OnInit {
     )
   }
 
-  uploadarImage(file: File) {
-    this.prod.uploadImage(file).subscribe();
-  }
+  // uploadarImage(file: File) {
+  //   this.prod.uploadImage(file).subscribe();
+  // }
 
 }

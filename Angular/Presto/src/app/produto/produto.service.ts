@@ -1,5 +1,5 @@
 import { Cardapio } from './../cardapio/cardapio';
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Produto } from './produto';
@@ -33,7 +33,8 @@ export class ProdutoService {
     return this.http.delete<any>("http://localhost:8080/produto/delete/" + id);
   }
 
-  uploadImage(file: File): Observable<any> {
-    return this.http.post<any>("http://localhost:8080/image/create/", file);
+  // uploadImage(file: File): Observable<any> {
+  //   console.log(file.name);
+  //   return this.http.post<any>("http://localhost:8080/image/create", file, { observe: 'response' });
+
   }
-}
