@@ -62,7 +62,15 @@ export class ProdutoComponent implements OnInit {
     )
   }
 
-  uploadarImage(file: File) {
-    this.produtoService.uploadImage(file).subscribe();
-  }
+  // uploadarImage(file: File) {
+  //   this.produtoService.uploadImage(file).subscribe(
+  //     (response) => {
+  //       if (response.status === 500) {
+  //         console.log("Upload bem sucedido");
+  //       } else {
+  //         console.log("Upload mal sucedido");
+  //       }
+  //     }
+  //   );
+  // }
 }

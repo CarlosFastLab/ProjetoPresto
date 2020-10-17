@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./update-produto.component.css']
 })
 export class UpdateProdutoComponent {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private produtoService: ProdutoService, private formBuilder: FormBuilder, private http: HttpClient) { }
     selectedFile: File;
 
     retrievedImage: any;
@@ -22,44 +22,51 @@ export class UpdateProdutoComponent {
     message: string;
 
     imageName: any;
+
+    uploadForm: FormGroup;
     //Gets called when the user selects an image
+
+    ngOnInit(){
+      this.uploadForm = this.formBuilder.group({
+        profile: ['']
+      });
+    }
 
     public onFileChanged(event) {
 
       //Select File
-      this.selectedFile = event.target.files[0];
+      if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.uploadForm.get('profile').setValue(file);
+    }
 
     }
     //Gets called when the user clicks on submit to upload the image
 
     onUpload() {
-      console.log(this.selectedFile);
-      //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
-      const uploadImageData = new FormData();
-      uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-      //Make a call to the Spring Boot Application to save the image
-      this.httpClient.post('http://localhost:8080/image/create', uploadImageData, { observe: 'response' })
-        .subscribe((response) => {
-          if (response.status === 200) {
-            this.message = 'Image uploaded successfully';
-          } else {
-            this.message = 'Image not uploaded successfully';
-          }
-        }
-        );
+      const fromData = new FormData();
+      fromData.append('file', this.uploadForm.get('profile').value);
+      this.http.post<any>("http://localhost:8080/image/create", fromData).subscribe(
+        (res) => console.log(res),
+        (err) => console.log(err),
+      );
+
+
+
+    //       this.produtoService.uploadImage(this.selectedFile).subscribe(
+    //   (response) => {
+    //     if (response.status === 500) {
+    //       console.log("Upload bem sucedido");
+    //     } else {
+    //       console.log("Upload mal sucedido");
+    //     }
+    //   }
+    // );
     }
 
       //Gets called when the user clicks on retieve image button to get the image from back end
       getImage() {
-      //Make a call to Sprinf Boot to get the Image Bytes.
-      this.httpClient.get('http://localhost:8080/image/gettipo/' + this.imageName)
-        .subscribe(
-          res => {
-            this.retrieveResonse = res;
-            this.base64Data = this.retrieveResonse.picByte;
-            this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-          }
-        );
+
     }
   }
 
