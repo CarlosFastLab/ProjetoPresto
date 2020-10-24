@@ -1,54 +1,45 @@
 <form [formGroup]="produtoForm" (ngSubmit)="inserirProduto()">
 
-  <div class="form-group">
-    <label for="nome"  class="ml-1 mt-3 font-weight-bold">Qual o nome do produto:</label>
-    <input type="text" class="form-control form-control-lg text-center" name="nome" id="nome" formControlName="nome" placeholder="Nome" required>
+    <div class="form-group">
+        <label for="nome" class="ml-1 mt-3 font-weight-bold">Qual o nome do produto:</label>
+        <input type="text" class="form-control form-control-lg text-center" name="nome" id="nome" formControlName="nome" placeholder="Nome" required>
 
-  </div>
+    </div>
 
-  <!-- <div class="form-check">
-    <label for="tipo" class="ml-1 mt-3 font-weight-bold">Qual o tipo do produto:</label>
-    <input type="radio" class="form-check-input form-control form-control-lg" name="tipo" id="tipo" formControlName="tipo" required>
-
-  </div> -->
-
-  <p><strong>Qual o tipo do produto?</strong></p>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="tipo" id="tipo1" value="comida" formControlName="tipo" checked>
-    <label class="form-check-label" for="tipo1">
+    <p><strong>Qual o tipo do produto?</strong></p>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="tipo" id="tipo1" value="comida" formControlName="tipo" checked>
+        <label class="form-check-label" for="tipo1">
       Comida
     </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="tipo" id="tipo2" value="bebida" formControlName="tipo">
-    <label class="form-check-label" for="tipo2">
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="tipo" id="tipo2" value="bebida" formControlName="tipo">
+        <label class="form-check-label" for="tipo2">
       Bebida
     </label>
-  </div>
+    </div>
 
 
-  <div class="form-group">
-    <label for="descricao" class="ml-1 mt-3 font-weight-bold">Adicione uma descrição para o produto:</label>
-    <input class="form-control form-control-lg text-center" name="descricao" id="descricao" formControlName="descricao" placeholder="Ex: Coca Cola 2l" required>
+    <div class="form-group">
+        <label for="descricao" class="ml-1 mt-3 font-weight-bold">Adicione uma descrição para o produto:</label>
+        <input class="form-control form-control-lg text-center" name="descricao" id="descricao" formControlName="descricao" placeholder="Ex: Coca Cola 2l" required>
+    </div>
 
-  </div>
-  <div class="form-group">
-    <label for="tempo" class="ml-1 mt-3 font-weight-bold">Em quanto tempo o produto costuma ficar pronto para entrega?</label>
-    <input class="form-control form-control-lg text-center" name="tempo" id="tempo" formControlName="tempo" placeholder="00:15:00,000" required>
-  </div>
+    <div class="form-group">
+        <label for="tempo" class="ml-1 mt-3 font-weight-bold">Em quanto tempo o produto costuma ficar pronto para entrega?</label>
+        <input class="form-control form-control-lg text-center" name="tempo" id="tempo" formControlName="tempo" placeholder="00:15:00,000" required>
+    </div>
 
-  <div class="form-group">
-    <label for="imagem" class="ml-1 mt-3 font-weight-bold">Qual o endereço da imagem do produto?</label>
-    <input type="file" accept="image/png, image/jpg, image/jpeg" class="form-control-file text-center" name="imagem" id="imagem" formControlName="imagem" required>
-  </div>
+    <form [formGroup]="imagemForm">
+        <div class="form-group">
+            <label for="imagem" class="ml-1 mt-3 font-weight-bold">Qual o endereço da imagem do produto?</label>
+            <input type="file" class="form-control form-control-lg text-center" name="imagem" id="imagem" formControlName="imagem" (change)="onFileChanged($event)" required>
+            <button type="submit" class="btn btn-secondary">salvar imagem</button>
+        </div>
+    </form>
 
-  <!-- <div class="form-group">
-    <label for="cardapio" class="ml-1 mt-3 font-weight-bold">Id do cardápio</label>
-    <input class="form-control form-control-lg text-center" name="cardapios" id="cardapios" formControlName="cardapios" placeholder="../../../assets/imagens/imagem.jpg">
-  </div> -->
-
-
-  <div class="form-group">
-    <button type="submit" [disabled]="!produtoForm.valid" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Registrar</button>
-  </div>
+    <div class="form-group">
+        <button type="submit" [disabled]="!produtoForm.valid" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Registrar</button>
+    </div>
 </form>
