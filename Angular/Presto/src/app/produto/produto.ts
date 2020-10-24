@@ -5,6 +5,6 @@ export interface Produto {
   tipo: string;
   descricao: string;
   tempo: string;
-  imagem: string;
+  imagem: File;
   cardapios: Cardapio;
 }
