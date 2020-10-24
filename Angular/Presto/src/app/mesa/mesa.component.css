@@ -1,0 +1,14 @@
+.btn {
+  background-color: #DD2D2D;
+  border: none;
+  box-shadow: 2px 2px 2px #888888;
+}
+
+.border {
+  box-shadow: 10px 8px 5px #888888;
+  border: 1px solid #BFBFBF
+}
+
+.btn:hover {
+  background-color: salmon;
+}
