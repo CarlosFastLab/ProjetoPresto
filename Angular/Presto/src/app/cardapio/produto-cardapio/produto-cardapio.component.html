@@ -1,15 +1,15 @@
 <div class="card mt-5" style="width: 18rem;">
-  <img class="card-img-top" [src]="produto?.imagem" alt="Card image cap" style="height: 13.1rem;">
+  <img class="card-img-top m-2" [src]="produto?.imagem" alt="Card image cap" style="height: 13.1rem;">
   <div class="card-body">
     <h5 class="card-title titulo">{{produto?.nome}}</h5>
   </div>
-  <p>{{produto?.descricao}}</p>
+  <p class="ml-4">{{produto?.descricao}}</p>
 
-  <button type="button" class="btn" (click)="removerProdutoDoCardapio(produto)">
+  <button type="button" class="btn mx-5 mb-1" (click)="removerProdutoDoCardapio(produto)" style="background-color: #dd2d2d; color: white;">
     Remover
   </button>
 
-  <button type="button" class="btn" data-toggle="modal" [attr.data-target]="'#'+produto.tipo" style="background-color: #dd2d2d; color: white;">
+  <button type="button" class="btn mx-5 mb-1" data-toggle="modal" [attr.data-target]="'#'+produto.tipo" style="background-color: #007bfe; color: white;">
     Editar {{produto?.nome}}
   </button>
 
