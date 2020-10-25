@@ -9,13 +9,15 @@
           <div class="card-body">
             <h5 class="card-title">{{produto?.nome}}</h5>
             <p class="card-text">{{produto?.descricao}}</p>
-            <button  type="button"  (click)="addNoCardapio(produto)">Adicionar ao Cardapio</button>
-            <button  type="button"  (click)="deletarProduto(produto.id)">Remover produto</button>
+            <button  type="button" class="btn" style="background-color: #6c757d; color: white;" (click)="addNoCardapio(produto)">Adicionar ao Cardapio</button>
 
-            <button type="button" class="btn" data-toggle="modal" [attr.data-target]="'#'+produto.tipo"
-            style="background-color: #dd2d2d; color: white;" (click)="capturaNome(produto.nome)" >
+
+            <button type="button" class="btn my-1 mr-5" data-toggle="modal" [attr.data-target]="'#'+produto.tipo"
+            style="background-color: #6c757d; color: white;" (click)="capturaNome(produto.nome)" >
             Editar {{produto?.nome}}
             </button>
+
+            <button  type="button" class="btn" style="background-color: #dd2d2d; color: white;" (click)="deletarProduto(produto.id)">Remover produto</button>
           </div>
         </div>
       </div>
