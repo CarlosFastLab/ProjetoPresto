@@ -12,6 +12,10 @@
                   <h1 class="card-title"> Entregue </h1>
                 </div>
               </div>
+              <button type="button" (click)="criarPedido(mesa)"> Criar Pedido </button>
+              <div>
+
+              </div>
             </div>
 
         </div>
@@ -34,7 +38,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="mesa" (ngSubmit)="criarMesa()">
+          <form [formGroup]="mesaForm" (ngSubmit)="criarMesa()">
             <div class="form-group">
               <label for="nome"  class="ml-1 mt-3 font-weight-bold">Qual o nome da mesa:</label>
               <input type="text" class="form-control form-control-lg text-center" name="nome" id="nome" formControlName="nome" placeholder="Nome" required>
@@ -52,5 +56,12 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="cronometro">
+  <button type="button" (click)="start()" ></button>
+  <p>{{hora}}</p>
+  <p>{{minuto}}</p>
+  <p>{{segundo}}</p>
 </div>
 

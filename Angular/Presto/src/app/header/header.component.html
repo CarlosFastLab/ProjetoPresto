@@ -6,6 +6,9 @@
   <!--</div>-->
     <ul class="navbar-nav ml-auto flex-nowrap">
       <li class="nav-item" *ngIf="loggedUser()">
+        <a class="nav-link" routerLink="listarUsuario" style="color: white;"> Lista Usuario</a>
+      </li>
+      <li class="nav-item" *ngIf="loggedUser()">
         <a class="nav-link" routerLink="pedidos" style="color: white;">Pedidos</a>
       </li>
       <li class="nav-item" *ngIf="loggedUser()">

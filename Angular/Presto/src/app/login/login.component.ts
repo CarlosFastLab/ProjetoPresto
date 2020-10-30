@@ -2,7 +2,7 @@ import { UsuarioService } from './../usuario/usuario.service';
 import { AuthService } from './../authService/authservice.service';
 
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { element } from 'protractor';
 
 
@@ -20,6 +20,10 @@ export class LoginComponent implements OnInit {
 
   successMessage = "";
 
+  errorMessageLogin = "";
+
+  successMessageLogin = "";
+
   loading = false;
 
   signInForm : FormGroup;
@@ -30,8 +34,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.signInForm = this.fb.group(
       {
-        email: [''],
-        senha: ['']
+        email: ['', [Validators.email, Validators.required]],
+        senha: ['', [Validators.required]]
       }
     );
   }

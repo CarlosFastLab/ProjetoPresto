@@ -22,6 +22,7 @@ import { CadastroprodutoComponent } from './produto/cadastroproduto/cadastroprod
 import { ProdutoCardapioComponent } from './cardapio/produto-cardapio/produto-cardapio.component';
 import { UpdateProdutoComponent } from './produto/update-produto/update-produto.component';
 import { MesaComponent } from './mesa/mesa.component';
+import { ListarUsuarioComponent } from './usuario/listar-usuario/listar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MesaComponent } from './mesa/mesa.component';
     ProdutoCardapioComponent,
     UpdateProdutoComponent,
     MesaComponent,
+    ListarUsuarioComponent,
   ],
   imports: [
     BrowserModule,
