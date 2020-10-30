@@ -1,23 +1,26 @@
-<div class="row">
-    <div class="col-auto" *ngFor="let produto of produtos">
-        <div class="card mb-3" style="max-width: 540px;">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let produto of produtos">
+        <!-- card 1 -->
+        <div class="card card body rounded m-5 bg-light border" style="max-width: 540px;">
             <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img [src]="'../../assets/imagens/' + produto?.imagem" class="card-img" [alt]="produto.nome" style="max-height: 100em;">
+                <div class="col-md-4 px-3 my-5">
+                    <img [src]="'../../assets/imagens/' + produto?.imagem" class="card-img rounded" [alt]="produto.nome" style="max-height: 100em;">
                 </div>
                 <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{{produto?.nome}}</h5>
+                    <!-- card 2 -->
+                    <div class="card-body bg-light m-1">
+                        <h5 class="card-title" >{{produto?.nome}}</h5>
                         <p class="card-text">{{produto?.descricao}}</p>
                         <button type="button" class="btn" style="background-color: #6c757d; color: white;" (click)="addNoCardapio(produto)">Adicionar ao Cardapio</button>
-
 
                         <button type="button" class="btn my-1 mr-5" data-toggle="modal" [attr.data-target]="'#'+produto.tipo" style="background-color: #6c757d; color: white;" (click)="capturaNome(produto.nome)">
             Editar {{produto?.nome}}
             </button>
 
-                        <button type="button" class="btn" style="background-color: #dd2d2d; color: white;" (click)="deletarProduto(produto.id)">Remover produto</button>
+                        <button type="button" class="btn mr-5" style="background-color: #dd2d2d; color: white;" (click)="deletarProduto(produto.id)">Remover produto</button>
                     </div>
+
                 </div>
             </div>
             <!-- <img class="card-img-top" [src]="produto?.imagem" alt="Card image cap" style="height: 13.1rem;">
@@ -52,11 +55,20 @@
 
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="tipo" class="ml-1 mt-3 font-weight-bold">Qual o tipo do produto:</label>
-                                    <input type="text" class="form-control form-control-lg text-center" name="tipo" id="tipo" formControlName="tipo" placeholder="Ex: bebida" required>
-
+                                <p><strong>Qual o tipo do produto?</strong></p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" id="tipo1" value="comida" formControlName="tipo" checked>
+                                    <label class="form-check-label" for="tipo1">
+                                  Comida
+                                </label>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" id="tipo2" value="bebida" formControlName="tipo">
+                                    <label class="form-check-label" for="tipo2">
+                                  Bebida
+                                </label>
+                                </div>
+
 
                                 <div class="form-group">
                                     <label for="descricao" class="ml-1 mt-3 font-weight-bold">Adicione uma descrição para o produto:</label>
@@ -96,7 +108,7 @@
 
     <!--Modal Adicionar Produto-->
     <div class="col">
-        <div type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNovoProduto">Teste</div>
+        <div type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNovoProduto">Add produto</div>
         <div class="modal fade" id="modalNovoProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
             <div class="modal-dialog" role="document">
@@ -119,3 +131,6 @@
         </div>
     </div>
 </div>
+</div>
+
+
