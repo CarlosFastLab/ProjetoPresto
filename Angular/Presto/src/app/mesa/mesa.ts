@@ -1,5 +1,5 @@
 export class Mesa{
   id:Number;
-  nome : String;
+  nome : string;
   pedido : [];
 }

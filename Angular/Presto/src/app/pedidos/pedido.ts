@@ -3,6 +3,7 @@ import { Produto } from '../produto/produto';
 
 export interface Pedido {
   id: Number;
-  mesas: Mesa;
-  listaProdutos: Produto[];
+  descricao: string;
+  mesas: Mesa[];
+  itensDoPedido: Produto[];
 }

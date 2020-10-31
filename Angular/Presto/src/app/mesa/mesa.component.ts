@@ -3,6 +3,7 @@ import { MesaService } from './meseService';
 import { Component, OnInit } from '@angular/core';
 import { Mesa } from './mesa';
 import { Pedido } from '../pedidos/pedido';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mesa',
@@ -19,8 +20,14 @@ export class MesaComponent implements OnInit {
   public segundo = 0;
   pedido: Pedido;
 
+  data: any;
 
-constructor(private mesaService : MesaService, private  fb : FormBuilder ) { }
+  mesaNome: string;
+
+  pedidoForm: FormGroup;
+
+
+constructor(private mesaService : MesaService, private  fb : FormBuilder, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
     this.mesaService.getAllMesas().subscribe(
@@ -31,6 +38,10 @@ constructor(private mesaService : MesaService, private  fb : FormBuilder ) { }
 
     this.mesaForm = this.fb.group({
       nome: ['', [Validators.required]]
+    })
+
+    this.pedidoForm = this.fb.group({
+      descricao: ['', [Validators.required]],
     })
 
   }
@@ -59,13 +70,16 @@ constructor(private mesaService : MesaService, private  fb : FormBuilder ) { }
       }},1000)
   }
 
-  criarPedido(mesa: Mesa){
-    this.mesa = mesa
-    this.mesaService.criarPedido(this.pedido).subscribe(
-      pedidoRetorno => {
-        this.mesaService.addPedidoMesa(pedidoRetorno, mesa.nome)
+  capturaNomeMesa(nome: string) {
+    console.log(nome);
+    this.mesaNome = nome;
+  }
+
+  addPedidoNaMesa() {
+    this.mesaService.addPedidoMesa(this.mesaNome, this.pedidoForm.value).subscribe(
+      pedidoReceive => {
+        this.pedido = pedidoReceive;
       }
     )
   }
-
 }
