@@ -3,6 +3,20 @@
     <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100 mt-5 border">
       <form [formGroup]="signInForm" (ngSubmit)="login()">
 
+        <div *ngIf="errorMessageLogin" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <div class="text-center"> Email ou senha incorretos </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div *ngIf="successMessageLogin" class="alert alert-success alert-dismissible fade show" role="alert">
+          <div class="text-center"> Usuário logado com sucesso. Redirecionando para a página de pedidos</div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
         <div class="form-group">
           <label for="email" class="ml-1 mt-3 font-weight-bold">Digite seu email:</label>
           <input type="text" class="form-control form-control-lg text-center" name="email" id="email" formControlName="email" placeholder="Email" required>
@@ -10,6 +24,8 @@
         <div class="form-group">
           <label for="senha" class="ml-1 mt-3 font-weight-bold">Digite sua senha:</label>
           <input class="form-control form-control-lg text-center" name="senha" id="senha" formControlName="senha" placeholder="Senha" type="password" required>
+
+          <!-- <div *ngIf="!confereSenha()"> Usuário ou senha incoretos </div> -->
         </div>
         <div class="form-group">
           <button class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Entrar</button>

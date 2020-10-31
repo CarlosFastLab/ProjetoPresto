@@ -56,7 +56,6 @@ export class CadastroComponent implements OnInit {
         this.loading = false;
       }
     );
-
   }
 
   obter() {

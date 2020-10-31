@@ -11,22 +11,26 @@ import { map }from 'rxjs/operators';
 export class AuthService {
   mostrarMenuEmitter = new EventEmitter<Boolean>()
   usuarioAutenticado: boolean = false
+  retornoSenha: boolean = true
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(email: string, senha: string): Observable<Usuario> {
-    return this.http.get<Usuario>('http://localhost:8080/usuario/getemail/' + email)
+  login(email: string, senha: string): Observable<any> {
+    return this.http.get<any>('http://localhost:8080/usuario/getemail/' + email)
       .pipe(
         map(usuario => {
-          if(usuario.senha === senha) {
+          if(usuario.senha == senha) {
             this.usuarioAutenticado = true;
             localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
-            this.router.navigate(['/pedidos'])
+            // this.router.navigate(['/pedidos'])
             this.mostrarMenuEmitter.emit(true)
+            this.retornoSenha = true
+            return this.retornoSenha
           } else {
             this.mostrarMenuEmitter.emit(false)
+            this.retornoSenha = false
+            return this.retornoSenha
           }
-          return usuario;
         })
       );
   }
@@ -38,4 +42,6 @@ export class AuthService {
   loggedUser(): Usuario {
     return JSON.parse(localStorage.getItem('usuarioLogado'));
   }
+
+
 }
