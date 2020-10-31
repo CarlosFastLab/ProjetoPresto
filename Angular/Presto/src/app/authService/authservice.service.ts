@@ -31,7 +31,6 @@ export class AuthService {
             this.retornoSenha = false
             return this.retornoSenha
           }
-          return usuario;
         })
       );
   }

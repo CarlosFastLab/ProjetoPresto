@@ -49,16 +49,6 @@ export class LoginComponent implements OnInit {
     console.log("Login chamado")
     console.log(this.signInForm.value.email)
     this.authService.login(this.signInForm.value.email, this.signInForm.value.senha).subscribe(
-      // (response) => {
-      //   console.log('response')
-      //   this.successMessageLogin = response;
-      //   setTimeout(() => { this.route.navigate(['/pedidos']); }, 2000)
-      // },
-      // (error) => {
-      //   console.log('error')
-      //   this.errorMessageLogin = error
-      //   this.loading = false
-      // }
       retorno => {
         if (retorno) {
           console.log('response')
