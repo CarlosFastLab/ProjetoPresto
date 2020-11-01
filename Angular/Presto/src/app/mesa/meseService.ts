@@ -12,7 +12,7 @@ import { Produto } from '../produto/produto';
 export class MesaService {
 
   constructor(private http: HttpClient) { }
-
+// Chamadas para mesa
   getAllMesas() : Observable<any>{
     return this.http.get<any>("http://localhost:8080/mesa/mesas")
   }
@@ -20,18 +20,21 @@ export class MesaService {
   criarMesa(mesa : Mesa): Observable<any>{
     return this.http.post<any>("http://localhost:8080/mesa/create", mesa)
   }
-
-  criarPedido(pedido: Pedido): Observable<Pedido>{
-    return this.http.post<Pedido>("http://localhost:8080/pedido/create", pedido)
-  }
-
   addPedidoMesa(nome: string, pedido: Pedido): Observable<any>{
     return this.http.put<any>("http://localhost:8080/mesa/addpedido/" + nome, pedido)
+  }
+
+  // Chamadas para pedidos
+  criarPedido(pedido: Pedido): Observable<Pedido>{
+    return this.http.post<Pedido>("http://localhost:8080/pedido/create", pedido)
   }
 
   addProdutosPedido(produtos: Produto[], id: number): Observable<any> {
     return this.http.put<any>("http://localhost:8080/pedido/addprodutos/" + id, produtos);
   }
+
+
+
 }
 
 
