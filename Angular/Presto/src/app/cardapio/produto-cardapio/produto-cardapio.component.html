@@ -1,5 +1,5 @@
 <div class="card mt-5" style="width: 18rem;">
-  <img class="card-img-top m-2" [src]="produto?.imagem" alt="Card image cap" style="height: 13.1rem;">
+  <img [src]="'../../assets/imagens/' + produto?.imagem" class="card-img rounded" [alt]="produto.nome" style="max-height: 100em;">
   <div class="card-body">
     <h5 class="card-title titulo">{{produto?.nome}}</h5>
   </div>

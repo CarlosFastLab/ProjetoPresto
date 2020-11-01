@@ -93,8 +93,9 @@ export class MesaComponent implements OnInit {
   addPedidoNaMesa() {
     this.mesaService.addPedidoMesa(this.mesaNome, this.pedidoForm.value).subscribe(
       pedidoReceive => {
-        this.booleanoLista = true;
-        this.pedido = pedidoReceive;
+        this.booleanoLista = true
+        this.pedido = pedidoReceive
+        console.log(pedidoReceive)
       }
     )
   }
@@ -108,6 +109,10 @@ export class MesaComponent implements OnInit {
     this.mesaService.addProdutosPedido(this.produtosPedido, this.pedido.id).subscribe(
       produtosDoPedio => {
         this.pedido = produtosDoPedio;
+        this.booleanoLista = false;
+        while(this.produtosPedido.length){
+          this.produtosPedido.pop();
+        }
       }
     )
   }

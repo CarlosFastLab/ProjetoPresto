@@ -38,7 +38,8 @@
                                                 <div *ngIf="booleanoLista">
                                                     <div *ngFor="let produto of produtosCardapio">
                                                         <label [for]="produto.nome">{{produto.nome}} <button type="button" class="btn glyphicon glyphicon-plus"
-                              (click)="addProdutoPedido(produto)">+</button></label>
+                                                          (click)="addProdutoPedido(produto)">+</button>
+                                                        </label>
                                                     </div>
 
                                                     <div>
