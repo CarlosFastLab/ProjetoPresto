@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pedido } from '../pedidos/pedido';
+import { Produto } from '../produto/produto';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,10 @@ export class MesaService {
 
   addPedidoMesa(nome: string, pedido: Pedido): Observable<any>{
     return this.http.put<any>("http://localhost:8080/mesa/addpedido/" + nome, pedido)
+  }
+
+  addProdutosPedido(produtos: Produto[], id: number): Observable<any> {
+    return this.http.put<any>("http://localhost:8080/pedido/addprodutos/" + id, produtos);
   }
 }
 

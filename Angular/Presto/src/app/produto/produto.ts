@@ -1,6 +1,6 @@
 import { Cardapio } from '../cardapio/cardapio';
 export interface Produto {
-  id : Number;
+  id : number;
   nome: string;
   tipo: string;
   descricao: string;

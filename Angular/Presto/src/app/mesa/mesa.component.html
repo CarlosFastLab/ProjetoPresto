@@ -11,53 +11,63 @@
                             <!-- {{mesa?.status}} -->
                             <h1 class="card-title"> Entregue </h1>
                         </div>
-                    </div>
+                        <!--Modal Criação Pedido-->
+                        <div class="col">
+                            <!--Botão de chamada do Modal-->
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalMesa'+mesa.id" style="background-color: #6c757d; color: white;" (click)="capturaNomeMesa(mesa.nome)">Fazer pedido</button>
+                            <div class="modal fade" [attr.id]="'modalMesa'+mesa.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <!--Modal Pedido-->
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">{{mesa.nome}}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form [formGroup]="pedidoForm" (ngSubmit)="addPedidoNaMesa()">
+                                                <div class="form-group">
+                                                    <label for="descricao" class="ml-1 mt-3 font-weight-bold">Descricao pedido:</label>
+                                                    <input type="text" class="form-control form-control-lg text-center" name="descricao" id="descricao" formControlName="descricao" placeholder="Descricao" required>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Registrar</button>
+                                                    </div>
+                                                </div>
 
-                    <!--Modal Criação Pedido-->
-                    <div class="col">
-                        <!--Botão de chamada do Modal-->
-                        <div type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#'+mesa.nome" (click)="capturaNomeMesa(mesa.nome)">Fazer pedido</div>
-                        <div class="modal fade" [attr.id]="mesa.nome" id="modalNovoPedido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <!--Modal Pedido-->
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{mesa.nome}}</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form [formGroup]="pedidoForm" (ngSubmit)="addPedidoNaMesa()">
-                                            <div class="form-group">
-                                                <label for="descricao" class="ml-1 mt-3 font-weight-bold">Descricao pedido:</label>
-                                                <input type="text" class="form-control form-control-lg text-center" name="descricao" id="descricao" formControlName="descricao" placeholder="Descricao" required>
-                                            </div>
+                                                <div *ngIf="booleanoLista">
+                                                    <div *ngFor="let produto of produtosCardapio">
+                                                        <label [for]="produto.nome">{{produto.nome}} <button type="button" class="btn glyphicon glyphicon-plus"
+                              (click)="addProdutoPedido(produto)">+</button></label>
+                                                    </div>
 
-                                            <div>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Registrar</button>
-                                            </div>
-                                        </form>
+                                                    <div>
+                                                    </div>
 
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                    <button type="button" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill" (click)="registarProdutosPedido()">Registrar</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- <button type="button" (click)="criarPedido(mesa)"> Criar Pedido </button> -->
                     </div>
 
-                    <!-- <button type="button" (click)="criarPedido(mesa)"> Criar Pedido </button> -->
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
+
 
 <!--Modal Criação Mesa-->
 <div class="col">
