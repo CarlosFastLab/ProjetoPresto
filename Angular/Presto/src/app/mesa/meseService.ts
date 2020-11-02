@@ -37,8 +37,9 @@ export class MesaService {
     return this.http.get<Pedido>("http://localhost:8080/mesa/getpedidomesa/" + id)
   }
 
-
-
+  removePedidoMesa(idMesa: number, idPedido: number): Observable<any> {
+    return this.http.put<any>(`http://localhost:8080/mesa/removepedido/${idMesa}/${idPedido}`, true)
+  }
 }
 
 

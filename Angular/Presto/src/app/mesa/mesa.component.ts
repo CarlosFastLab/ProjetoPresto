@@ -18,21 +18,19 @@ export class MesaComponent implements OnInit {
   mesas: Mesa[]
   mesaForm: FormGroup
   mesa: Mesa
-  public hora = 0;
-  public minuto = 0;
-  public segundo = 0;
+  mesaNome: string;
+
   pedido: Pedido;
+  pedidoMesa: Pedido;
+  pedidoForm: FormGroup;
 
   produtosCardapio: Produto[];
   produtosPedido: Produto[] = new Array;
   booleanoLista: boolean = false;
 
-  data: any;
-
-  mesaNome: string;
-
-  pedidoForm: FormGroup;
-
+  public hora = 0;
+  public minuto = 0;
+  public segundo = 0;
 
   constructor(private mesaService: MesaService, private fb: FormBuilder, private cardapioService: CardapioService ) { }
 
@@ -120,8 +118,16 @@ export class MesaComponent implements OnInit {
   pedidoDaMesa(id : number){
     this.mesaService.pedidoDaMesa(id).subscribe(
       pedido => {
-        this.pedido = pedido;
-        console.log(this.pedido);
+        this.pedidoMesa = pedido;
+        console.log(this.pedidoMesa);
+      }
+    )
+  }
+
+  removePedidoDaMesa(idMesa: number, idPedido: number) {
+    this.mesaService.removePedidoMesa(idMesa, idPedido).subscribe(
+      pedidoRemovido => {
+        console.log(pedidoRemovido);
       }
     )
   }
