@@ -29,7 +29,8 @@
                                         <div class="modal-body">
                                             <form [formGroup]="pedidoForm" (ngSubmit)="addPedidoNaMesa()">
                                                 <div class="form-group">
-                                                    <label for="descricao" class="ml-1 mt-3 font-weight-bold">Descricao pedido:</label>
+                                                    <label for="descricao" class="ml-1 mt-3 font-weight-bold">Descricao
+                            pedido:</label>
                                                     <input type="text" class="form-control form-control-lg text-center" name="descricao" id="descricao" formControlName="descricao" placeholder="Descricao" required>
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Registrar</button>
@@ -60,25 +61,32 @@
                             </div>
                         </div>
 
-                        <!-- <button type="button" (click)="criarPedido(mesa)"> Criar Pedido </button> -->
                         <!--Modal Detalhes Mesa-->
                         <div class="col">
                             <!--Botão de chamada do Modal-->
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalPedidoMesa'+mesa.pedido.id" style="background-color: #6c757d; color: white;" (click)="pedidoDaMesa(mesa.id)">Detalhes da Mesa</button>
-                            <div class="modal fade" [attr.id]="'modalPedidoMesa'+mesa.pedido.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalPedidoMesa'+mesa.id" style="background-color: #6c757d; color: white;" (click)="pedidoDaMesa(mesa.id)">Detalhes da Mesa</button>
+
+                            <div class="modal fade" [attr.id]="'modalPedidoMesa'+mesa.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <!--Modal Pedido-->
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Pedido da {{mesa.nome}}</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Pedido da {{mesa?.nome}}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                                         </div>
+
                                         <div class="modal-body">
-                                            {{mesa.pedido.descricao}}
+                                            <div *ngFor="let produto of pedidoMesa?.itensDoPedido">
+                                                <div>
+                                                    <h1>{{produto?.nome}}</h1>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary float-left" (click)="removePedidoDaMesa(mesa.id, pedidoMesa.id)">Finalizar pedido</button>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="button" class="btn btn-primary">Save</button>
                                         </div>
@@ -87,53 +95,52 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
-<!--Modal Criação Mesa-->
-<div class="col">
-    <!--Botão de chamada do Modal-->
-    <div type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNovaMesa">Nova mesa</div>
-    <div class="modal fade" id="modalNovaMesa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <!--Modal Mesa-->
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nova mesa</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-                </div>
-                <div class="modal-body">
-                    <form [formGroup]="mesaForm" (ngSubmit)="criarMesa()">
-                        <div class="form-group">
-                            <label for="nome" class="ml-1 mt-3 font-weight-bold">Qual o nome da mesa:</label>
-                            <input type="text" class="form-control form-control-lg text-center" name="nome" id="nome" formControlName="nome" placeholder="Nome" required>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Registrar</button>
-                        </div>
-                    </form>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+    <!--Modal Criação Mesa-->
+    <div class="col">
+        <!--Botão de chamada do Modal-->
+        <div type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNovaMesa">Nova mesa</div>
+        <div class="modal fade" id="modalNovaMesa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!--Modal Mesa-->
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nova mesa</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="mesaForm" (ngSubmit)="criarMesa()">
+                            <div class="form-group">
+                                <label for="nome" class="ml-1 mt-3 font-weight-bold">Qual o nome da mesa:</label>
+                                <input type="text" class="form-control form-control-lg text-center" name="nome" id="nome" formControlName="nome" placeholder="Nome" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Registrar</button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="cronometro">
-    <button type="button" (click)="start()"></button>
-    <p>{{hora}}</p>
-    <p>{{minuto}}</p>
-    <p>{{segundo}}</p>
-</div>
+    <div class="cronometro">
+        <button type="button" (click)="start()"></button>
+        <p>{{hora}}</p>
+        <p>{{minuto}}</p>
+        <p>{{segundo}}</p>
+    </div>
