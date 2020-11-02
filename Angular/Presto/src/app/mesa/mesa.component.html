@@ -11,6 +11,7 @@
                             <!-- {{mesa?.status}} -->
                             <h1 class="card-title"> Entregue </h1>
                         </div>
+
                         <!--Modal Criação Pedido-->
                         <div class="col">
                             <!--Botão de chamada do Modal-->
@@ -37,9 +38,9 @@
 
                                                 <div *ngIf="booleanoLista">
                                                     <div *ngFor="let produto of produtosCardapio">
-                                                        <label [for]="produto.nome">{{produto.nome}} <button type="button" class="btn glyphicon glyphicon-plus"
-                                                          (click)="addProdutoPedido(produto)">+</button>
-                                                        </label>
+                                                        <label [for]="produto.nome">{{produto.nome}} <button type="button"
+                                class="btn glyphicon glyphicon-plus" (click)="addProdutoPedido(produto)">+</button>
+                            </label>
                                                     </div>
 
                                                     <div>
@@ -60,6 +61,31 @@
                         </div>
 
                         <!-- <button type="button" (click)="criarPedido(mesa)"> Criar Pedido </button> -->
+                        <!--Modal Detalhes Mesa-->
+                        <div class="col">
+                            <!--Botão de chamada do Modal-->
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalPedidoMesa'+mesa.pedido.id" style="background-color: #6c757d; color: white;" (click)="pedidoDaMesa(mesa.id)">Detalhes da Mesa</button>
+                            <div class="modal fade" [attr.id]="'modalPedidoMesa'+mesa.pedido.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <!--Modal Pedido-->
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Pedido da {{mesa.nome}}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{mesa.pedido.descricao}}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
