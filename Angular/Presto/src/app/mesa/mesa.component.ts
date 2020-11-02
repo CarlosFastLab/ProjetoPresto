@@ -116,4 +116,13 @@ export class MesaComponent implements OnInit {
       }
     )
   }
+
+  pedidoDaMesa(id : number){
+    this.mesaService.pedidoDaMesa(id).subscribe(
+      pedido => {
+        this.pedido = pedido;
+        console.log(this.pedido);
+      }
+    )
+  }
 }
