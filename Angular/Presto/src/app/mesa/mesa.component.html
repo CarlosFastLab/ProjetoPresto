@@ -72,7 +72,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Pedido da {{mesa?.nome}}</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">{{pedidoMesa?.descricao}}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -81,9 +81,12 @@
                                         <div class="modal-body">
                                             <div *ngFor="let produto of pedidoMesa?.itensDoPedido">
                                                 <div>
-                                                    <h1>{{produto?.nome}}</h1>
+                                                    <p>{{produto?.nome}}---------------- R${{produto?.valor}}</p>
                                                 </div>
                                             </div>
+                                        <div class="total">
+                                          <h2>Valor total do pedido R${{pedidoMesa?.valorTotal}}</h2>
+                                        </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary float-left" (click)="removePedidoDaMesa(mesa.id, pedidoMesa.id)">Finalizar pedido</button>

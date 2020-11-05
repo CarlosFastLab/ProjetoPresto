@@ -1,9 +1,8 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MesaService } from './meseService';
+import { MesaService } from './mesaService';
 import { Component, OnInit } from '@angular/core';
 import { Mesa } from './mesa';
 import { Pedido } from '../pedidos/pedido';
-import { Cardapio } from '../cardapio/cardapio';
 import { CardapioService } from '../cardapio/cardapio.service';
 import { Produto } from '../produto/produto';
 
