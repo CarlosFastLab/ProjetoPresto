@@ -32,7 +32,7 @@ export class CadastroprodutoComponent implements OnInit {
       tipo: ['', [Validators.required]],
       descricao: ['', [Validators.required]],
       valor : [Number, [Validators.required]],
-      tempo: ['', [Validators.required]],
+      tempo: [Number, [Validators.required]],
       imagem: [[''], [Validators.required]]
     })
 

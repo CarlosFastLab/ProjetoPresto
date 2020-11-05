@@ -9,7 +9,7 @@
                         <div class="card-header"> {{mesa?.nome}} </div>
                         <div class="card-body bg-success">
                             <!-- {{mesa?.status}} -->
-                            <h1 class="card-title"> Entregue </h1>
+                            <h1 id="demo-id" class="card-title"> Entregue </h1>
                         </div>
 
                         <!--Modal Criação Pedido-->
@@ -86,6 +86,7 @@
                                             </div>
                                         <div class="total">
                                           <h2>Valor total do pedido R${{pedidoMesa?.valorTotal}}</h2>
+                                          <p>Tempo maximo para o pedido ser entregue {{pedidoMesa?.maiorTempo}} minutos</p>
                                         </div>
                                         </div>
                                         <div class="modal-footer">
@@ -143,7 +144,7 @@
 
     <div class="cronometro">
         <button type="button" (click)="start()"></button>
-        <p>{{hora}}</p>
+
         <p>{{minuto}}</p>
         <p>{{segundo}}</p>
     </div>

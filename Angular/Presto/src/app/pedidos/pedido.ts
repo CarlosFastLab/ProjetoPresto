@@ -7,4 +7,5 @@ export interface Pedido {
   valorTotal : number;
   mesas: Mesa[];
   itensDoPedido: Produto[];
+  maiorTempo : number;
 }
