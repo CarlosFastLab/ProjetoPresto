@@ -23,6 +23,7 @@ export class CardapioComponent implements OnInit {
     )
   }
 
+
   exibirfiltroGeral(){
     this.cardapioService.cardapioPornome("Geral").subscribe(
       cardapio => {

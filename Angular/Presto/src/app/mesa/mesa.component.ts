@@ -1,11 +1,12 @@
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MesaService } from './meseService';
+import { MesaService } from './mesaService';
 import { Component, OnInit } from '@angular/core';
 import { Mesa } from './mesa';
 import { Pedido } from '../pedidos/pedido';
-import { Cardapio } from '../cardapio/cardapio';
 import { CardapioService } from '../cardapio/cardapio.service';
 import { Produto } from '../produto/produto';
+
 
 
 @Component({
@@ -28,7 +29,8 @@ export class MesaComponent implements OnInit {
   produtosPedido: Produto[] = new Array;
   booleanoLista: boolean = false;
 
-  public hora = 0;
+  demo = document.querySelector('#demo-id');
+
   public minuto = 0;
   public segundo = 0;
 
@@ -57,11 +59,19 @@ export class MesaComponent implements OnInit {
     })
 
   }
+  load() {
+    sessionStorage.refresh = true;
+    console.log('sessionStorage', sessionStorage);
+    (sessionStorage.refresh == 'true' || !sessionStorage.refresh)
+        && location.reload();
+    sessionStorage.refresh = false;
+  }
 
   criarMesa() {
     this.mesaService.criarMesa(this.mesaForm.value).subscribe(
       mesa1 => {
         console.log(mesa1)
+        this.load();
       }
     )
   }
@@ -72,16 +82,12 @@ export class MesaComponent implements OnInit {
       if (this.segundo === 60) {
         this.segundo = 0;
         this.minuto += 1;
-        if (this.minuto === 60) {
-          this.minuto = 0
-          this.hora += 1
-          if (this.hora === 4) {
-            this.hora = 0;
-          }
+        if (this.minuto === 230) {
+          this.minuto = 0;
         }
       }
-    }, 1000)
-  }
+    }, 1000);
+    }
 
   capturaNomeMesa(nome: string) {
     console.log(nome);
@@ -95,12 +101,14 @@ export class MesaComponent implements OnInit {
         this.pedido = pedidoReceive
         console.log(pedidoReceive)
       }
+
     )
   }
 
   addProdutoPedido(produto: Produto) {
     this.produtosPedido.push(produto);
     console.log(this.produtosPedido);
+
   }
 
   registarProdutosPedido() {
@@ -111,6 +119,7 @@ export class MesaComponent implements OnInit {
         while(this.produtosPedido.length){
           this.produtosPedido.pop();
         }
+
       }
     )
   }
@@ -128,7 +137,12 @@ export class MesaComponent implements OnInit {
     this.mesaService.removePedidoMesa(idMesa, idPedido).subscribe(
       pedidoRemovido => {
         console.log(pedidoRemovido);
+    },
+      error => {
+        console.log(error)
+        this.load();
       }
+
     )
   }
 }

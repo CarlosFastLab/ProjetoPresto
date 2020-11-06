@@ -9,13 +9,15 @@
                         <div class="card-header"> {{mesa?.nome}} </div>
                         <div class="card-body bg-success">
                             <!-- {{mesa?.status}} -->
-                            <h1 class="card-title"> Entregue </h1>
+                            <h4 *ngIf="mesa.pedido === null">Sem Pedido</h4>
+                            <h4 *ngIf="mesa.pedido !== null && this.minuto < mesa?.pedido?.maiorTempo"  id="demo-id" class="card-title"> Em andamento </h4>
+                            <h4 *ngIf="mesa.pedido !== null && this.minuto >= mesa?.pedido?.maiorTempo"  > Atrasado</h4>
                         </div>
 
                         <!--Modal Criação Pedido-->
                         <div class="col">
                             <!--Botão de chamada do Modal-->
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalMesa'+mesa.id" style="background-color: #6c757d; color: white;" (click)="capturaNomeMesa(mesa.nome)">Fazer pedido</button>
+                            <button *ngIf="mesa?.pedido === null"  type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalMesa'+mesa.id" style="background-color: #6c757d; color: white;" (click)="capturaNomeMesa(mesa.nome)">Fazer pedido</button>
                             <div class="modal fade" [attr.id]="'modalMesa'+mesa.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <!--Modal Pedido-->
                                 <div class="modal-dialog" role="document">
@@ -65,14 +67,14 @@
                         <div class="col">
                             <!--Botão de chamada do Modal-->
 
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalPedidoMesa'+mesa.id" style="background-color: #6c757d; color: white;" (click)="pedidoDaMesa(mesa.id)">Detalhes da Mesa</button>
+                            <button *ngIf="mesa.pedido !== null"  type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalPedidoMesa'+mesa.id" style="background-color: blue; color: white;" (click)="pedidoDaMesa(mesa.id)">Detalhes da Mesa</button>
 
                             <div class="modal fade" [attr.id]="'modalPedidoMesa'+mesa.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <!--Modal Pedido-->
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Pedido da {{mesa?.nome}}</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">{{pedidoMesa?.descricao}}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -81,12 +83,16 @@
                                         <div class="modal-body">
                                             <div *ngFor="let produto of pedidoMesa?.itensDoPedido">
                                                 <div>
-                                                    <h1>{{produto?.nome}}</h1>
+                                                    <p>{{produto?.nome}}---------------- R${{produto?.valor}}</p>
                                                 </div>
                                             </div>
+                                        <div class="total">
+                                          <h2>Valor total do pedido R${{pedidoMesa?.valorTotal}}</h2>
+                                          <p>Tempo maximo para o pedido ser entregue {{pedidoMesa?.maiorTempo}} minutos</p>
+                                        </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary float-left" (click)="removePedidoDaMesa(mesa.id, pedidoMesa.id)">Finalizar pedido</button>
+                                            <button type="button" class="btn btn-secondary float-left"(click)="start()" (click)="removePedidoDaMesa(mesa.id, pedidoMesa.id)"  >Finalizar pedido</button>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="button" class="btn btn-primary">Save</button>
                                         </div>
@@ -140,7 +146,7 @@
 
     <div class="cronometro">
         <button type="button" (click)="start()"></button>
-        <p>{{hora}}</p>
+
         <p>{{minuto}}</p>
         <p>{{segundo}}</p>
     </div>
