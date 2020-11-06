@@ -9,13 +9,15 @@
                         <div class="card-header"> {{mesa?.nome}} </div>
                         <div class="card-body bg-success">
                             <!-- {{mesa?.status}} -->
-                            <h1 id="demo-id" class="card-title"> Entregue </h1>
+                            <h4 *ngIf="mesa.pedido === null">Sem Pedido</h4>
+                            <h4 *ngIf="mesa.pedido !== null && this.minuto < mesa?.pedido?.maiorTempo"  id="demo-id" class="card-title"> Em andamento </h4>
+                            <h4 *ngIf="mesa.pedido !== null && this.minuto >= mesa?.pedido?.maiorTempo"  > Atrasado</h4>
                         </div>
 
                         <!--Modal Criação Pedido-->
                         <div class="col">
                             <!--Botão de chamada do Modal-->
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalMesa'+mesa.id" style="background-color: #6c757d; color: white;" (click)="capturaNomeMesa(mesa.nome)">Fazer pedido</button>
+                            <button *ngIf="mesa?.pedido === null"  type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalMesa'+mesa.id" style="background-color: #6c757d; color: white;" (click)="capturaNomeMesa(mesa.nome)">Fazer pedido</button>
                             <div class="modal fade" [attr.id]="'modalMesa'+mesa.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <!--Modal Pedido-->
                                 <div class="modal-dialog" role="document">
@@ -65,7 +67,7 @@
                         <div class="col">
                             <!--Botão de chamada do Modal-->
 
-                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalPedidoMesa'+mesa.id" style="background-color: #6c757d; color: white;" (click)="pedidoDaMesa(mesa.id)">Detalhes da Mesa</button>
+                            <button *ngIf="mesa.pedido !== null"  type="button" class="btn btn-outline-primary" data-toggle="modal" [attr.data-target]="'#modalPedidoMesa'+mesa.id" style="background-color: blue; color: white;" (click)="pedidoDaMesa(mesa.id)">Detalhes da Mesa</button>
 
                             <div class="modal fade" [attr.id]="'modalPedidoMesa'+mesa.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <!--Modal Pedido-->
@@ -90,7 +92,7 @@
                                         </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary float-left" (click)="removePedidoDaMesa(mesa.id, pedidoMesa.id)">Finalizar pedido</button>
+                                            <button type="button" class="btn btn-secondary float-left"(click)="start()" (click)="removePedidoDaMesa(mesa.id, pedidoMesa.id)"  >Finalizar pedido</button>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="button" class="btn btn-primary">Save</button>
                                         </div>

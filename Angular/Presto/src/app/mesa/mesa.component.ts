@@ -34,7 +34,7 @@ export class MesaComponent implements OnInit {
   public minuto = 0;
   public segundo = 0;
 
-  constructor(private mesaService: MesaService, private fb: FormBuilder, private cardapioService: CardapioService) { }
+  constructor(private mesaService: MesaService, private fb: FormBuilder, private cardapioService: CardapioService ) { }
 
   ngOnInit(): void {
     this.mesaService.getAllMesas().subscribe(
@@ -59,11 +59,19 @@ export class MesaComponent implements OnInit {
     })
 
   }
+  load() {
+    sessionStorage.refresh = true;
+    console.log('sessionStorage', sessionStorage);
+    (sessionStorage.refresh == 'true' || !sessionStorage.refresh)
+        && location.reload();
+    sessionStorage.refresh = false;
+  }
 
   criarMesa() {
     this.mesaService.criarMesa(this.mesaForm.value).subscribe(
       mesa1 => {
         console.log(mesa1)
+        this.load();
       }
     )
   }
@@ -79,7 +87,7 @@ export class MesaComponent implements OnInit {
         }
       }
     }, 1000);
-      }
+    }
 
   capturaNomeMesa(nome: string) {
     console.log(nome);
@@ -93,6 +101,7 @@ export class MesaComponent implements OnInit {
         this.pedido = pedidoReceive
         console.log(pedidoReceive)
       }
+
     )
   }
 
@@ -110,6 +119,7 @@ export class MesaComponent implements OnInit {
         while(this.produtosPedido.length){
           this.produtosPedido.pop();
         }
+
       }
     )
   }
@@ -127,7 +137,12 @@ export class MesaComponent implements OnInit {
     this.mesaService.removePedidoMesa(idMesa, idPedido).subscribe(
       pedidoRemovido => {
         console.log(pedidoRemovido);
+    },
+      error => {
+        console.log(error)
+        this.load();
       }
+
     )
   }
 }

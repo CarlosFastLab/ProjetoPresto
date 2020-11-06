@@ -15,12 +15,20 @@ export class ProdutoCardapioComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  load() {
+    sessionStorage.refresh = true;
+    console.log('sessionStorage', sessionStorage);
+    (sessionStorage.refresh == 'true' || !sessionStorage.refresh)
+        && location.reload();
+    sessionStorage.refresh = false;
+  }
 
   removerProdutoDoCardapio(produto : Produto) {
     console.log("ts", produto.nome);
     this.cardapioService.removeProduto("Geral", produto).subscribe(
       removeProduto => {
         console.log(removeProduto);
+        this.load();
       }
     );
   }
