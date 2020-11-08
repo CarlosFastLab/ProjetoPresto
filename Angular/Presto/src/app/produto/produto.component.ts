@@ -4,6 +4,7 @@ import { Produto } from './produto';
 import { ProdutoService } from './produto.service';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-produto',
@@ -29,6 +30,9 @@ export class ProdutoComponent implements OnInit {
   message: string;
   imageName: any;
   formData = new FormData();
+
+  //Icones
+  faPlus = faPlus;
 
   constructor(private produtoService: ProdutoService, private fb: FormBuilder, private fbImage: FormBuilder, private http:HttpClient) { }
 

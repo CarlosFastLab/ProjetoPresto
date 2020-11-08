@@ -1,6 +1,7 @@
 import { CardapioService } from './cardapio/cardapio.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { ProdutoCardapioComponent } from './cardapio/produto-cardapio/produto-ca
 import { UpdateProdutoComponent } from './produto/update-produto/update-produto.component';
 import { MesaComponent } from './mesa/mesa.component';
 import { ListarUsuarioComponent } from './usuario/listar-usuario/listar-usuario.component';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { ListarUsuarioComponent } from './usuario/listar-usuario/listar-usuario.
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [
     GuardRouters

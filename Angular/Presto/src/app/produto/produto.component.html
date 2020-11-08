@@ -5,7 +5,7 @@
             <div class="card card body rounded m-5 bg-light border" style="max-width: 540px;">
                 <div class="row no-gutters">
                     <div class="col-md-4 px-3 my-5">
-                        <img [src]="'../../assets/imagens/' + produto?.imagem" class="card-img rounded" [alt]="produto.nome" style="max-height: 100em;">
+                        <img [src]="'../../assets/imagens/' + produto?.imagem" class="card-img rounded" [alt]="produto.nome">
                     </div>
                     <div class="col-md-8">
                         <!-- card 2 -->
@@ -108,7 +108,11 @@
 
         <!--Modal Adicionar Produto-->
         <div class="col">
-            <div type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNovoProduto">Add produto</div>
+            <div class="row" style="margin-left: 15%; margin-top: 25%;">
+                <div type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNovoProduto">
+                    <fa-icon [icon]="faPlus" style="color: white;"></fa-icon>
+                </div>
+            </div>
             <div class="modal fade" id="modalNovoProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
                 <div class="modal-dialog" role="document">
